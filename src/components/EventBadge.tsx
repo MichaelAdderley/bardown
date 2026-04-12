@@ -1,0 +1,33 @@
+'use client';
+
+import { CalendarEvent, EventType } from '@/lib/types';
+
+interface EventBadgeProps {
+  event: CalendarEvent;
+  eventTypes: EventType[];
+  onClick: (event: CalendarEvent) => void;
+}
+
+export default function EventBadge({ event, eventTypes, onClick }: EventBadgeProps) {
+  const eventType = eventTypes.find((t) => t.name === event.event_type);
+  const icon = eventType?.icon || '';
+
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick(event);
+      }}
+      className="group flex w-full items-center gap-1 rounded-lg px-1.5 py-0.5 text-left text-[10px] font-medium transition-all sm:text-xs"
+      style={{
+        background: 'rgba(255, 255, 255, 0.06)',
+        borderLeft: '2px solid rgba(255, 255, 255, 0.2)',
+        color: 'var(--text-secondary)',
+      }}
+      title={event.title}
+    >
+      <span className="hidden sm:inline">{icon}</span>
+      <span className="truncate">{event.title}</span>
+    </button>
+  );
+}
