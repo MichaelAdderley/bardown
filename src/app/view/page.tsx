@@ -5,6 +5,7 @@ import { useEvents } from '@/hooks/useEvents';
 import { CalendarEvent } from '@/lib/types';
 import CalendarHeader from '@/components/CalendarHeader';
 import Calendar from '@/components/Calendar';
+import ScheduleList from '@/components/ScheduleList';
 import EventDetailReadOnly from '@/components/EventDetailReadOnly';
 
 export default function ViewCalendar() {
@@ -82,14 +83,31 @@ export default function ViewCalendar() {
             </div>
           </div>
         ) : (
-          <Calendar
-            year={currentYear}
-            month={currentMonth}
-            events={events}
-            eventTypes={eventTypes}
-            onDayClick={handleDayClick}
-            onEventClick={handleEventClick}
-          />
+          <>
+            {/* Desktop: month grid */}
+            <div className="hidden flex-1 flex-col sm:flex">
+              <Calendar
+                year={currentYear}
+                month={currentMonth}
+                events={events}
+                eventTypes={eventTypes}
+                onDayClick={handleDayClick}
+                onEventClick={handleEventClick}
+              />
+            </div>
+
+            {/* Mobile: schedule list */}
+            <div className="flex flex-1 flex-col sm:hidden">
+              <ScheduleList
+                year={currentYear}
+                month={currentMonth}
+                events={events}
+                eventTypes={eventTypes}
+                onDayClick={handleDayClick}
+                onEventClick={handleEventClick}
+              />
+            </div>
+          </>
         )}
       </main>
 
