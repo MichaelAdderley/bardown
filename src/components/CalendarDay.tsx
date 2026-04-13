@@ -37,25 +37,23 @@ export default function CalendarDay({
       onClick={() => onDayClick(date)}
       className="group relative flex min-h-[60px] cursor-pointer flex-col border-b border-r p-1 transition-all sm:min-h-[100px] sm:p-2 lg:min-h-[120px]"
       style={{
-        borderColor: 'var(--border)',
-        background: isCurrentMonth ? 'transparent' : 'rgba(255,255,255,0.01)',
+        borderColor: 'var(--border-default)',
+        background: isCurrentMonth ? 'transparent' : 'var(--surface-default)',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background = 'var(--surface-hover)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = isCurrentMonth ? 'transparent' : 'rgba(255,255,255,0.01)';
+        e.currentTarget.style.background = isCurrentMonth ? 'transparent' : 'var(--surface-default)';
       }}
     >
       <span
         className={`mb-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium sm:h-7 sm:w-7 sm:text-sm ${
-          today
-            ? 'text-black'
-            : ''
+          today ? 'glow-accent text-white' : ''
         }`}
         style={
           today
-            ? { background: '#ffffff', boxShadow: '0 0 12px rgba(255,255,255,0.15)' }
+            ? { background: 'var(--accent)' }
             : { color: isCurrentMonth ? 'var(--text-primary)' : 'var(--text-muted)' }
         }
       >
@@ -68,7 +66,7 @@ export default function CalendarDay({
             <span
               key={event.id}
               className="h-1.5 w-1.5 rounded-full"
-              style={{ backgroundColor: 'rgba(255,255,255,0.4)' }}
+              style={{ backgroundColor: 'var(--text-secondary)' }}
             />
         ))}
         {dayEvents.length > 4 && (

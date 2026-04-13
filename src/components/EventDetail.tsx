@@ -46,9 +46,9 @@ export default function EventDetail({
                 <span
                   className="rounded-full px-2.5 py-0.5 text-xs font-medium"
                   style={{
-                    background: 'rgba(255,255,255,0.06)',
+                    background: 'var(--surface-default)',
                     color: 'var(--text-secondary)',
-                    border: '1px solid var(--border-glass)',
+                    border: '1px solid var(--border-strong)',
                   }}
                 >
                   {event.event_type}
@@ -70,7 +70,7 @@ export default function EventDetail({
             </button>
           </div>
 
-          {/* Info rows — evenly spaced, consistent hover */}
+          {/* Info rows */}
           <div className="mb-4 -mx-2 space-y-0.5">
             <div className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm" style={{ color: 'var(--text-secondary)' }}>
               <svg className="h-4 w-4 shrink-0" style={{ color: 'var(--text-muted)' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -89,7 +89,7 @@ export default function EventDetail({
               </span>
             </div>
 
-            {/* Location (Hockey) */}
+            {/* Location (Hockey) — opens Google Maps */}
             {event.location && (
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
@@ -108,11 +108,11 @@ export default function EventDetail({
               </a>
             )}
 
-            {/* Track (Racing) */}
+            {/* Track (Racing) — click to copy */}
             {event.track && (
               <button
                 onClick={() => copyToClipboard(event.track!)}
-                className="group flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm transition-colors hover:bg-white/[0.04]"
+                className="group flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm transition-colors hover:bg-[var(--surface-hover)]"
                 style={{ color: 'var(--text-secondary)' }}
                 title="Click to copy track"
               >
@@ -121,7 +121,7 @@ export default function EventDetail({
                 </svg>
                 <span className="flex-1">{event.track}</span>
                 {copied ? (
-                  <svg className="h-3.5 w-3.5 shrink-0" style={{ color: '#22c55e' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg className="h-3.5 w-3.5 shrink-0" style={{ color: 'var(--success)' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 ) : (
@@ -159,9 +159,9 @@ export default function EventDetail({
               onClick={onDelete}
               className="flex flex-1 items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-sm font-medium transition-all"
               style={{
-                background: 'rgba(239, 68, 68, 0.1)',
-                border: '1px solid rgba(239, 68, 68, 0.2)',
-                color: '#ef4444',
+                background: 'var(--error-subtle)',
+                border: '1px solid var(--error-border)',
+                color: 'var(--error)',
               }}
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
