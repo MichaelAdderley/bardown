@@ -8,6 +8,7 @@ interface CalendarHeaderProps {
   onPrev: () => void;
   onNext: () => void;
   onToday: () => void;
+  readOnly?: boolean;
 }
 
 export default function CalendarHeader({
@@ -16,12 +17,27 @@ export default function CalendarHeader({
   onPrev,
   onNext,
   onToday,
+  readOnly,
 }: CalendarHeaderProps) {
   return (
     <header className="flex items-center justify-between px-8 py-5">
-      <h1 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>
-        {formatMonthYear(year, month)}
-      </h1>
+      <div className="flex items-center gap-3">
+        <h1 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>
+          {formatMonthYear(year, month)}
+        </h1>
+        {readOnly && (
+          <span
+            className="rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider"
+            style={{
+              background: 'var(--surface-default)',
+              color: 'var(--text-muted)',
+              border: '1px solid var(--border-default)',
+            }}
+          >
+            View Only
+          </span>
+        )}
+      </div>
 
       {/* Nav pill */}
       <div
