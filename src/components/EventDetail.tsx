@@ -29,18 +29,12 @@ export default function EventDetail({
       />
 
       <div className="glass-strong relative w-full max-w-sm rounded-2xl shadow-2xl shadow-black/40">
-        {/* Top bar */}
-        <div
-          className="h-1 rounded-t-2xl"
-          style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
-        />
-
         <div className="p-5">
           {/* Header */}
           <div className="mb-4 flex items-start justify-between">
             <div className="flex-1">
               <div className="mb-1 flex items-center gap-2">
-                <span className="text-lg">{icon}</span>
+                {icon && <span className="text-lg">{icon}</span>}
                 <span
                   className="rounded-full px-2.5 py-0.5 text-xs font-medium"
                   style={{

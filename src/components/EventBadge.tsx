@@ -26,8 +26,9 @@ export default function EventBadge({ event, eventTypes, onClick }: EventBadgePro
       }}
       title={event.title}
     >
-      <span className="hidden sm:inline">{icon}</span>
-      <span className="truncate">{event.title}</span>
+      <span className="truncate">
+        {event.team ? `${event.team} ${event.title}` : event.title}
+      </span>
     </button>
   );
 }
