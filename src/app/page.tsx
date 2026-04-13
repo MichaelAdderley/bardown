@@ -105,7 +105,7 @@ export default function Home() {
   return (
     <div className="relative z-10 flex min-h-screen flex-col">
       {/* Top bar */}
-      <div className="glass" style={{ borderBottom: '1px solid var(--border)' }}>
+      <div>
         <div className="mx-auto max-w-7xl">
           <CalendarHeader
             year={currentYear}
@@ -113,15 +113,14 @@ export default function Home() {
             onPrev={goToPrev}
             onNext={goToNext}
             onToday={goToToday}
-            onAddEvent={handleAddEvent}
           />
         </div>
       </div>
 
       {/* Calendar */}
-      <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col p-2 sm:p-4 lg:p-6">
+      <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-2 pb-2 sm:px-4 sm:pb-4 lg:px-8 lg:pb-6">
         {error && (
-          <div className="mb-4 rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', color: '#ef4444' }}>
+          <div className="mb-4 rounded-xl px-4 py-3 text-sm" style={{ background: 'var(--error-subtle)', border: '1px solid var(--error-border)', color: 'var(--error)' }}>
             {error}
           </div>
         )}

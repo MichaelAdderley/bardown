@@ -26,7 +26,7 @@ export default function Calendar({
   return (
     <div className="glass flex flex-1 flex-col overflow-hidden rounded-2xl shadow-2xl shadow-black/30">
       {/* Day headers */}
-      <div className="grid grid-cols-7" style={{ borderBottom: '1px solid var(--border)' }}>
+      <div className="grid grid-cols-7" style={{ borderBottom: '1px solid var(--border-default)' }}>
         {DAY_NAMES.map((day) => (
           <div
             key={day}

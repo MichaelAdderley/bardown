@@ -105,13 +105,11 @@ export default function EventModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-md"
         onClick={onClose}
       />
 
-      {/* Modal */}
       <div className="glass-strong relative w-full max-w-md rounded-2xl p-6 shadow-2xl shadow-black/40">
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
@@ -132,7 +130,7 @@ export default function EventModal({
           {/* Sport Type */}
           <div>
             <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-              Sport Type <span style={{ color: '#ef4444' }}>*</span>
+              Sport Type <span style={{ color: 'var(--error)' }}>*</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
               {eventTypes.map((type) => {
@@ -144,29 +142,16 @@ export default function EventModal({
                     onClick={() => {
                       if (type.name !== eventType) {
                         setEventType(type.name);
-                        setTeam('');
-                        setLocation('');
-                        setTrack('');
-                        setSeries('');
-                        setTitle('');
+                        setTeam(''); setLocation(''); setTrack(''); setSeries(''); setTitle('');
                       }
                     }}
                     className="flex items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-sm font-medium transition-all"
                     style={
                       selected
-                        ? {
-                            background: 'rgba(255,255,255,0.1)',
-                            border: '1px solid rgba(255,255,255,0.25)',
-                            color: 'var(--text-primary)',
-                          }
-                        : {
-                            background: 'var(--surface)',
-                            border: '1px solid var(--border)',
-                            color: 'var(--text-secondary)',
-                          }
+                        ? { background: 'var(--accent-subtle)', border: '1px solid var(--accent-muted)', color: 'var(--accent-hover)' }
+                        : { background: 'var(--surface-default)', border: '1px solid var(--border-default)', color: 'var(--text-secondary)' }
                     }
                   >
-                    <span>{type.icon}</span>
                     <span>{type.name}</span>
                   </button>
                 );
@@ -179,43 +164,25 @@ export default function EventModal({
             <>
               <div>
                 <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-                  Title <span style={{ color: '#ef4444' }}>*</span>
+                  Title <span style={{ color: 'var(--error)' }}>*</span>
                 </label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="e.g. Leafs vs Habs"
-                  className={inputClasses}
-                  required
-                  autoFocus
-                />
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
+                  placeholder="e.g. Leafs vs Habs" className={inputClasses} required autoFocus />
               </div>
 
               {selectedType?.teams?.length ? (
                 <div>
                   <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-                    Team <span style={{ color: '#ef4444' }}>*</span>
+                    Team <span style={{ color: 'var(--error)' }}>*</span>
                   </label>
                   <div className="grid grid-cols-2 gap-2">
                     {selectedType.teams.map((t) => (
-                      <button
-                        key={t.id}
-                        type="button"
-                        onClick={() => setTeam(t.name)}
+                      <button key={t.id} type="button" onClick={() => setTeam(t.name)}
                         className="rounded-xl px-3 py-2 text-xs font-medium transition-all"
                         style={
                           team === t.name
-                            ? {
-                                background: 'rgba(255,255,255,0.1)',
-                                border: '1px solid rgba(255,255,255,0.25)',
-                                color: 'var(--text-primary)',
-                              }
-                            : {
-                                background: 'var(--surface)',
-                                border: '1px solid var(--border)',
-                                color: 'var(--text-secondary)',
-                              }
+                            ? { background: 'var(--accent-subtle)', border: '1px solid var(--accent-muted)', color: 'var(--accent-hover)' }
+                            : { background: 'var(--surface-default)', border: '1px solid var(--border-default)', color: 'var(--text-secondary)' }
                         }
                       >
                         {t.name}
@@ -228,7 +195,7 @@ export default function EventModal({
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-                    Date <span style={{ color: '#ef4444' }}>*</span>
+                    Date <span style={{ color: 'var(--error)' }}>*</span>
                   </label>
                   <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className={inputClasses} required />
                 </div>
@@ -240,13 +207,8 @@ export default function EventModal({
 
               <div>
                 <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Location</label>
-                <input
-                  type="text"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  placeholder="e.g. Scotiabank Arena"
-                  className={inputClasses}
-                />
+                <input type="text" value={location} onChange={(e) => setLocation(e.target.value)}
+                  placeholder="e.g. Scotiabank Arena" className={inputClasses} />
               </div>
             </>
           )}
@@ -256,69 +218,42 @@ export default function EventModal({
             <>
               <div>
                 <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-                  Title <span style={{ color: '#ef4444' }}>*</span>
+                  Title <span style={{ color: 'var(--error)' }}>*</span>
                 </label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="e.g. Monaco Grand Prix"
-                  className={inputClasses}
-                  required
-                  autoFocus
-                />
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
+                  placeholder="e.g. Monaco Grand Prix" className={inputClasses} required autoFocus />
               </div>
-
               <div>
                 <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-                  Track <span style={{ color: '#ef4444' }}>*</span>
+                  Track <span style={{ color: 'var(--error)' }}>*</span>
                 </label>
-                <input
-                  type="text"
-                  value={track}
-                  onChange={(e) => setTrack(e.target.value)}
-                  placeholder="e.g. Circuit de Monaco"
-                  className={inputClasses}
-                  required
-                />
+                <input type="text" value={track} onChange={(e) => setTrack(e.target.value)}
+                  placeholder="e.g. Circuit de Monaco" className={inputClasses} required />
               </div>
-
               <div>
                 <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-                  Date <span style={{ color: '#ef4444' }}>*</span>
+                  Date <span style={{ color: 'var(--error)' }}>*</span>
                 </label>
                 <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className={inputClasses} required />
               </div>
-
               <div>
                 <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Series</label>
-                <input
-                  type="text"
-                  value={series}
-                  onChange={(e) => setSeries(e.target.value)}
-                  placeholder="e.g. Formula 1, NASCAR, IndyCar"
-                  className={inputClasses}
-                />
+                <input type="text" value={series} onChange={(e) => setSeries(e.target.value)}
+                  placeholder="e.g. Formula 1, NASCAR, IndyCar" className={inputClasses} />
               </div>
             </>
           )}
 
           {/* Actions */}
           <div className="flex gap-2 pt-2">
-            <button
-              type="button"
-              onClick={onClose}
+            <button type="button" onClick={onClose}
               className="glass-button flex-1 rounded-xl px-4 py-2.5 text-sm font-medium"
-              style={{ color: 'var(--text-secondary)' }}
-            >
+              style={{ color: 'var(--text-secondary)' }}>
               Cancel
             </button>
-            <button
-              type="submit"
-              disabled={isSubmitDisabled}
-              className="glow-accent flex-1 rounded-xl px-4 py-2.5 text-sm font-medium text-black transition-all disabled:cursor-not-allowed disabled:opacity-40"
-              style={{ background: isSubmitDisabled ? 'var(--text-muted)' : '#ffffff' }}
-            >
+            <button type="submit" disabled={isSubmitDisabled}
+              className="glow-accent flex-1 rounded-xl px-4 py-2.5 text-sm font-medium text-white transition-all disabled:cursor-not-allowed disabled:opacity-40"
+              style={{ background: isSubmitDisabled ? 'var(--text-muted)' : 'var(--accent)' }}>
               {saving ? 'Saving...' : isEditing ? 'Save Changes' : 'Add Event'}
             </button>
           </div>
