@@ -15,11 +15,19 @@ export default function EventBadge({ event, onClick }: EventBadgeProps) {
         e.stopPropagation();
         onClick(event);
       }}
-      className="group flex w-full items-center gap-1 rounded-lg px-1.5 py-0.5 text-left text-[10px] font-medium transition-all sm:text-xs"
+      className="group flex w-full items-center gap-1 rounded px-1.5 py-0.5 text-left text-[10px] font-medium transition-all duration-150 sm:text-xs"
       style={{
         background: 'var(--surface-default)',
         borderLeft: '2px solid var(--border-focus)',
         color: 'var(--text-secondary)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = 'var(--surface-hover)';
+        e.currentTarget.style.color = 'var(--text-primary)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = 'var(--surface-default)';
+        e.currentTarget.style.color = 'var(--text-secondary)';
       }}
       title={event.title}
     >

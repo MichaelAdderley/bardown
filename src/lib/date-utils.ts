@@ -61,4 +61,36 @@ export function formatDateDisplay(dateStr: string): string {
 }
 
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-export { DAY_NAMES };
+const DAY_NAMES_SHORT = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+export { DAY_NAMES, DAY_NAMES_SHORT };
+
+export interface DayGroup {
+  date: Date;
+  dayName: string;
+  dayNumber: number;
+  events: { start_date: string; [key: string]: unknown }[];
+}
+
+export function getDaysWithEvents<T extends { start_date: string }>(
+  events: T[],
+  year: number,
+  month: number,
+): (Omit<DayGroup, 'events'> & { events: T[] })[] {
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const groups: (Omit<DayGroup, 'events'> & { events: T[] })[] = [];
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(year, month, d);
+    const dayEvents = events.filter((e) => isSameDay(new Date(e.start_date), date));
+    if (dayEvents.length > 0) {
+      groups.push({
+        date,
+        dayName: DAY_NAMES_SHORT[date.getDay()],
+        dayNumber: d,
+        events: dayEvents,
+      });
+    }
+  }
+
+  return groups;
+}
