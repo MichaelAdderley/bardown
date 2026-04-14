@@ -87,7 +87,11 @@ export default function ScheduleList({
                     className="text-sm font-medium"
                     style={{ color: 'var(--text-primary)' }}
                   >
-                    {event.team ? `${event.team} ${event.title}` : event.title}
+                    {event.team
+                      ? `${event.team} ${event.title}`
+                      : event.track
+                      ? `${event.title} at ${event.track}`
+                      : event.title}
                   </span>
                   <span
                     className="mt-0.5 text-xs"
