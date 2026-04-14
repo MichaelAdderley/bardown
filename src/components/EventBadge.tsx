@@ -32,7 +32,11 @@ export default function EventBadge({ event, onClick }: EventBadgeProps) {
       title={event.title}
     >
       <span className="truncate">
-        {event.team ? `${event.team} ${event.title}` : event.title}
+        {event.team
+          ? `${event.team} ${event.title}`
+          : event.track
+          ? `${event.title} at ${event.track}`
+          : event.title}
       </span>
     </button>
   );
